@@ -13,7 +13,8 @@ const theme = extendTheme({
     _white: "#D9D9D9",
     _blue: "#1DA1F2",
     _black: "#000000",
-    _gray: "#2f3336"
+    _gray: "#2f3336",
+    _textInput: "#6e767d",
   },
 })
 
