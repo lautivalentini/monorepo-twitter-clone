@@ -10,7 +10,7 @@ const handler = nextApp.getRequestHandler()
 
 const mongoose = require('mongoose')
 
-let urlMongo = `mongodb://localhost:27017/twitter`
+let urlMongo = `mongodb://mongo/twitter`
 
 mongoose.connect(urlMongo, {
   useNewUrlParser: true,

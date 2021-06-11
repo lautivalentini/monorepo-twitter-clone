@@ -1,0 +1,20 @@
+version: "3"
+
+services: 
+  twitter: 
+    container_name: node
+    restart: always
+    build: .
+    ports: 
+      - "3000:3000"
+    links: 
+      - database
+    volumes: 
+      - .:/usr/src/app
+  database:
+    container_name: mongo
+    image: mongo
+    ports: 
+      - "27017:27017"
+    logging: 
+      driver: none
