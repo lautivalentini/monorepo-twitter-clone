@@ -1,8 +1,15 @@
-import { Flex, Box, Stack, Text, Button } from '@chakra-ui/react'
+import Link from 'next/link'
+
+import { Flex, Box, Stack, Text, Button, useDisclosure } from '@chakra-ui/react'
 import { IoLogoTwitter } from 'react-icons/io'
 
+import Register from '../components/Register'
+
 const HomePage = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  
   return (
+    <>
     <Flex flexDirection={{base: 'column', lg: 'row'}}>
       <Box width={{base: '100%', lg: '55%'}} height={{base: '40vh', lg: '100vh'}} backgroundImage="https://abs.twimg.com/sticky/illustrations/lohp_1302x955.png"></Box>
       <Box width={{base: '100%', lg: '45%'}} height={{base: '60vh', lg: '100vh'}}>
@@ -24,26 +31,31 @@ const HomePage = () => {
               borderRadius={9999} 
               paddingY={6}
               _hover={{background: '#1DA1F2', opacity: '0.9'}}
+              onClick={onOpen}
             >
               Regístrate
             </Button>
-            <Button 
-              color="_blue" 
-              minW="250px"
-              maxWidth="380px" 
-              variant="outline" 
-              borderColor="_blue" 
-              fontSize="15px" 
-              borderRadius={9999} 
-              paddingY={6}
-              _hover={{background: '#191919', opacity: '0.9'}}
-            >
-              Iniciar sesión
-            </Button>
+            <Link href="/login">
+              <Button 
+                color="_blue" 
+                minW="250px"
+                maxWidth="380px" 
+                variant="outline" 
+                borderColor="_blue" 
+                fontSize="15px" 
+                borderRadius={9999} 
+                paddingY={6}
+                _hover={{background: '#191919', opacity: '0.9'}}
+              >
+                Iniciar sesión
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </Box>
     </Flex>
+    <Register isOpen={isOpen} onClose={onClose} />
+    </>
   )
 }
 
