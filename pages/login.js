@@ -26,7 +26,7 @@ const Login = () => {
 
   async function logginUser() {
     try {
-      const logginUser = await axios.post('/api/user/auth/login', {
+      const logginUser = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/auth/login`, {
         phone,
         password,
       })

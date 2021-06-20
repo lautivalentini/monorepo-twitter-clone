@@ -27,14 +27,14 @@ const ThirdStep = ({ updateStep }) => {
   async function createUser() {
     const username = await generateUsername(registerData.name)
     try {
-      await axios.post('/api/user/create', {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/create`, {
         name: registerData.name,
         phone: registerData.phone,
         date: `${registerData.day}/${registerData.month}/${registerData.year}`,
         password: registerData.password,
         username,
       })
-      const logginUser = await axios.post('/api/user/auth/login', {
+      const logginUser = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/auth/login`, {
         phone: registerData.phone,
         password: registerData.password,
       })
