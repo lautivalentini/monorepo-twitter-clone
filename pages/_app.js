@@ -3,7 +3,7 @@ import Head from "next/head";
 import { ChakraProvider } from "@chakra-ui/react"
 import theme from "../theme";
 
-import RegisterState from "../context/RegisterState";
+import AuthState from "../context/AuthState";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
@@ -12,9 +12,9 @@ const MyApp = ({ Component, pageProps }) => {
         <title>Twitter</title>
       </Head>
       <ChakraProvider theme={theme}>
-        <RegisterState>
-          < Component {...pageProps} />
-        </RegisterState>
+        <AuthState>
+          <Component {...pageProps} />
+        </AuthState>
       </ChakraProvider>
     </>
   )
