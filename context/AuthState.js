@@ -38,8 +38,6 @@ const AuthState = (props) => {
   };
 
   const validateFields = (payload) => {
-    console.log(validateFields)
-    console.log(state.data)
     switch (payload) {
       case "password": {
         return setValidationFields({

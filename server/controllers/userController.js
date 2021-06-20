@@ -61,7 +61,6 @@ const listUsers = async (req, res) => {
 
 const validateJwt = async (req, res) => {
   const token = req.header('token')
-  console.log(token)
   if (!token) {
     return res.status(401).json({ msg: 'Invalid token' })
   }
