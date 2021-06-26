@@ -15,7 +15,8 @@ const theme = extendTheme({
     _black: "#000000",
     _gray: "#2f3336",
     _textInput: "#6e767d",
-    _overlay: "#242d34"
+    _overlay: "#242d34",
+    _borderColor: "#2c2f31"
   },
 })
 

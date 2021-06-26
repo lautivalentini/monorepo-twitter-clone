@@ -1,17 +1,20 @@
 import { useContext } from 'react'
-import { Text } from '@chakra-ui/react'
+import { Text, Flex } from '@chakra-ui/react'
+
+import Leftbar from '../components/Leftbar'
+import Rightbar from '../components/Rightbar'
+import MenuCenter from '../components/MenuCenter'
 
 import AuthContext from '../context/AuthContext'
 
 const Home = () => {
   const { user } = useContext(AuthContext);
   return (
-    <>
-      <Text color="_white" fontWeight="bold" fontSize="18px">{user.name}</Text>
-      <Text color="_white" fontWeight="bold" fontSize="18px">@{user.username}</Text>
-      <Text color="_white" fontWeight="bold" fontSize="18px">{user.date}</Text>
-      <Text color="_white" fontWeight="bold" fontSize="18px">{user.phone}</Text>
-    </>
+    <Flex justifyContent="center" width="100%" maxW="1200px" margin="auto">
+      <Leftbar></Leftbar>
+      <MenuCenter></MenuCenter>
+      <Rightbar></Rightbar>
+    </Flex>
   )
 }
 
