@@ -2,6 +2,7 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const { generateJWT } = require('../helpers/generateJwt')
 const jwt = require('jsonwebtoken')
+const { v4: uuidv4  } = require('uuid');
 
 const createUser = async (req, res) => {
   const { name, phone, password, date, username } = req.body;
@@ -84,4 +85,32 @@ const validateJwt = async (req, res) => {
   }
 }
 
-module.exports = { createUser, loginUser, listUsers, validateJwt }
+const shareTweet = async (req, res) => {
+  const { tweet } = req.body
+  const { username } = req.query
+  console.log(tweet, username)
+  try {
+
+    const user = await User.findOne({username})
+
+    if (!user) {
+      return res.status(401).json({ msg: 'User does not exist' })
+    }
+
+    if (!user.state) {
+      return res.status(401).json({ msg: 'User is disabled' })
+    }
+
+    const id = uuidv4()
+
+    user.tweets.push({id, tweet})
+
+    await user.save()
+    return res.status(201).json({msg: 'saved'})
+  } catch (error) {
+    console.log(error)
+    res.status(401).json({ msg: 'Invalid token' })
+  }
+}
+
+module.exports = { createUser, loginUser, listUsers, validateJwt, shareTweet }

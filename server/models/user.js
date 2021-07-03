@@ -25,6 +25,9 @@ const UserSchema = Schema({
   img: {
     type: String,
   },
+  tweets: {
+    type: Array,
+  },
   state: {
     type: Boolean,
     default: true,

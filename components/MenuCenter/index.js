@@ -1,8 +1,26 @@
+import { useState, useContext } from 'react'
+import AuthContext from "../../context/AuthContext";
+
+import axios from 'axios'
+
 import { Box, Stack, Text, Image, Textarea, Button } from '@chakra-ui/react'
-import {RiMagicLine} from "react-icons/ri";
-import {BiWorld} from 'react-icons/bi'
+
+import { RiMagicLine } from "react-icons/ri";
+import { BiWorld } from 'react-icons/bi'
 
 const MenuCenter = () => {
+  const { user } = useContext(AuthContext);
+  const [tweet, setTweet] = useState('')
+
+  async function onSendTweet() {
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/share/tweet?username=${user.username}`, { tweet })
+      console.log(res)
+    } catch (err) {
+      console.log(err)
+    } 
+  }
+
   return (
     <Box border="1px solid" borderColor="_borderColor" borderTop="none" width="50%">
       <Stack direction="row" alignItems="center" justifyContent="space-between" p={3}>
@@ -26,6 +44,7 @@ const MenuCenter = () => {
           borderRadius={0}
           _focus={{outline: 'none'}}
           _hover={{borderColor: '#2c2f31'}}
+          onChange={(e) => setTweet(e.target.value)}
         />
         <Stack 
           fontSize="14px" 
@@ -49,6 +68,7 @@ const MenuCenter = () => {
           float="right"
           mr={3}
           _hover={{bg: "#1DA1F2", opacity: '0.9'}}
+          onClick={onSendTweet}
         >
           Tweet
         </Button>

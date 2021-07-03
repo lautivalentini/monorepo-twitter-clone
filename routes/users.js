@@ -2,7 +2,7 @@ const { Router } = require('express')
 const { check } = require('express-validator')
 const { validateFields } = require('../server/middlewares/validateFields')
 const { validatePhone } = require('../server/helpers/validators')
-const { createUser, loginUser, listUsers, validateJwt } = require('../server/controllers/userController')
+const { createUser, loginUser, listUsers, validateJwt, shareTweet } = require('../server/controllers/userController')
 
 const router = Router()
 
@@ -19,6 +19,11 @@ router.post('/auth/login', [
   check('password', 'The password is required').not().isEmpty(),
   validateFields
 ], loginUser)
+
+router.post('/share/tweet', [
+  check('tweet', 'The tweet is required').not().isEmpty(),
+  validateFields
+], shareTweet)
 
 router.get('/list', listUsers)
 
