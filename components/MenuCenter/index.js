@@ -4,7 +4,7 @@ import {BiWorld} from 'react-icons/bi'
 
 const MenuCenter = () => {
   return (
-    <Box border="1px solid" borderColor="_borderColor" width="50%">
+    <Box border="1px solid" borderColor="_borderColor" borderTop="none" width="50%">
       <Stack direction="row" alignItems="center" justifyContent="space-between" p={3}>
         <Text fontSize="20px" fontWeight="bold" color="_white">Inicio</Text>
         <Box fontSize="22px" color="_blue"><RiMagicLine /></Box>

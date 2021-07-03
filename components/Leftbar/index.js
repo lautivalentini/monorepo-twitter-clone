@@ -57,7 +57,7 @@ const Leftbar = () => {
           <Icon cursor="pointer" color="_white" width={8} height={8} as={IoLogoTwitter} />
         </ChakraLink>
         {icons.map(icon => (
-          <ChakraLink as={Link} href={icon.route}>
+          <ChakraLink key={icon.title} as={Link} href={icon.route}>
             <Stack
               color="_white"
               fontWeight="bold"
