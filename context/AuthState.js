@@ -117,6 +117,7 @@ const AuthState = (props) => {
         ...validateUser.data.user,
         token: validateUser.data.token
       })
+      router.push('/home')
     } catch (err) {
       console.log(err)
       router.push('/')

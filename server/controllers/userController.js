@@ -88,7 +88,6 @@ const validateJwt = async (req, res) => {
 const shareTweet = async (req, res) => {
   const { tweet } = req.body
   const { username } = req.query
-  console.log(tweet, username)
   try {
 
     const user = await User.findOne({username})
@@ -106,7 +105,7 @@ const shareTweet = async (req, res) => {
     user.tweets.push({id, tweet})
 
     await user.save()
-    return res.status(201).json({msg: 'saved'})
+    return res.status(201).json({user})
   } catch (error) {
     console.log(error)
     res.status(401).json({ msg: 'Invalid token' })
