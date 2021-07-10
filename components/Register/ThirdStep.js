@@ -105,7 +105,7 @@ const ThirdStep = ({ updateStep }) => {
           width="100%"
           borderRadius={9999}
           bg="_blue"
-          _hover={{ bg: "#1DA1F2", opacity: "0.9" }}
+          _hover={{ bg: 'rgb(26, 145, 218)' }}
           onClick={createUser}
         >
           Registrate

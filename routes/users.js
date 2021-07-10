@@ -2,7 +2,7 @@ const { Router } = require('express')
 const { check } = require('express-validator')
 const { validateFields } = require('../server/middlewares/validateFields')
 const { validatePhone } = require('../server/helpers/validators')
-const { createUser, loginUser, listUsers, validateJwt, shareTweet } = require('../server/controllers/userController')
+const { createUser, loginUser, listUsers, validateJwt, shareTweet, getUsers } = require('../server/controllers/userController')
 
 const router = Router()
 
@@ -26,6 +26,8 @@ router.post('/share/tweet', [
 ], shareTweet)
 
 router.get('/list', listUsers)
+
+router.get('/get', getUsers)
 
 router.get('/auth/validate', validateJwt)
 

@@ -60,6 +60,12 @@ const listUsers = async (req, res) => {
   res.json({ total, users })
 }
 
+const getUsers = async (req, res) => {
+  const { username } = req.query;
+  const users = (await User.find({ state: true })).filter(user => user.username !== username)
+  res.json({ users })
+}
+
 const validateJwt = async (req, res) => {
   const token = req.header('token')
   if (!token) {
@@ -112,4 +118,4 @@ const shareTweet = async (req, res) => {
   }
 }
 
-module.exports = { createUser, loginUser, listUsers, validateJwt, shareTweet }
+module.exports = { createUser, loginUser, listUsers, validateJwt, shareTweet, getUsers }

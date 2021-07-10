@@ -30,7 +30,7 @@ const HomePage = () => {
               bg="_blue" 
               borderRadius={9999} 
               paddingY={6}
-              _hover={{background: '#1DA1F2', opacity: '0.9'}}
+              _hover={{ bg: 'rgb(26, 145, 218)' }}
               onClick={onOpen}
             >
               Regístrate
@@ -45,7 +45,7 @@ const HomePage = () => {
                 fontSize="15px" 
                 borderRadius={9999} 
                 paddingY={6}
-                _hover={{background: '#191919', opacity: '0.9'}}
+                _hover={{ bg: 'rgb(26, 145, 218)' }}
               >
                 Iniciar sesión
               </Button>

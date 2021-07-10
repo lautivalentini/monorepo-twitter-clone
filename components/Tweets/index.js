@@ -16,12 +16,12 @@ const Tweets = () => {
           width={12}
           heigth={12}
         />
-        <Stack>
+        <Stack spacing={0}>
           <Stack direction="row" alignItems="flex-start">
             <Text fontSize="15px" fontWeight="bold" color="_white">{user.name}</Text>
-            <Text fontSize="15px" fontWeight="bold" color="_gray">@{user.username}</Text>
+            <Text fontSize="15px" color="_textInput">@{user.username}</Text>
           </Stack>
-          <Text fontSize="15px" color="_white" style={{ margin: '0' }}>{item.tweet}</Text>
+          <Text fontSize="15px" color="_white">{item.tweet}</Text>
         </Stack>
       </Stack>
     ))}

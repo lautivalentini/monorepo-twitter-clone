@@ -59,7 +59,7 @@ const HeaderModal = ({ updateStep, steps }) => {
                 !validationFields.password
                 ? true : false
             }
-            _hover={{ bg: "#1DA1F2", opacity: "0.9" }}
+            _hover={{ bg: 'rgb(26, 145, 218)' }}
             onClick={() => updateStep("increment")}
           >
             Siguiente

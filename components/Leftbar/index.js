@@ -51,7 +51,7 @@ const icons = [
 
 const Leftbar = () => {
   return (
-    <Box width="25%" paddingY={3}>
+    <Box width="20%" paddingY={3}>
       <Stack spacing={7}>
         <ChakraLink as={Link} href="/home">
           <Icon cursor="pointer" color="_white" width={8} height={8} as={IoLogoTwitter} />
@@ -61,7 +61,7 @@ const Leftbar = () => {
             <Stack
               color="_white"
               fontWeight="bold"
-              fontSize="20px"
+              fontSize="18px"
               direction="row"
               alignItems="center"
               spacing={4}
@@ -76,13 +76,13 @@ const Leftbar = () => {
         <Button
           color="_white"
           bg="_blue"
-          paddingY="24px"
+          paddingY="22px"
           borderRadius={9999}
           fontSize="12px"
-          width="75%"
+          width="90%"
           fontWeight="bold"
           margin="auto"
-          _hover={{bg: "#1DA1F2", opacity: '0.9'}}
+          _hover={{bg: 'rgb(26, 145, 218)'}}
         >
           Tweet
         </Button>

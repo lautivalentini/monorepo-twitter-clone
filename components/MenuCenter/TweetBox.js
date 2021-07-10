@@ -68,10 +68,10 @@ const TweetBox = () => {
         fontWeight="bold"
         float="right"
         mr={3}
-        _hover={{bg: "#1DA1F2", opacity: '0.9'}}
+        _hover={{bg: 'rgb(26, 145, 218)'}}
         onClick={onSendTweet}
       >
-        Tweet
+        Twittear
       </Button>
     </Box>
   </>
