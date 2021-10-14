@@ -1,10 +1,11 @@
-const User = require('../models/user')
+const User = require("../models/user");
 
 const validatePhone = async (phone = "") => {
-  const existingPhone = await User.findOne({ phone })
-  if (existingPhone) {
-    throw new Error(`The phone ${phone} already exists`)
-  }
-}
+    const existingPhone = await User.findOne({ phone });
 
-module.exports = { validatePhone }
+    if (existingPhone) {
+        throw new Error(`The phone ${phone} already exists`);
+    }
+};
+
+module.exports = { validatePhone };

@@ -1,21 +1,17 @@
-import { useContext } from 'react'
-import { Text, Flex } from '@chakra-ui/react'
+import { Flex } from "@chakra-ui/react";
 
-import Leftbar from '../components/Leftbar'
-import Rightbar from '../components/Rightbar'
-import MenuCenter from '../components/MenuCenter'
-
-import AuthContext from '../context/AuthContext'
+import Leftbar from "../components/Leftbar";
+import Rightbar from "../components/Rightbar";
+import MenuCenter from "../components/MenuCenter";
 
 const Home = () => {
-  const { user } = useContext(AuthContext);
-  return (
-    <Flex justifyContent="center" width="100%" maxW="1200px" margin="auto">
-      <Leftbar></Leftbar>
-      <MenuCenter></MenuCenter>
-      <Rightbar></Rightbar>
-    </Flex>
-  )
-}
+    return (
+        <Flex justifyContent="center" margin="auto" maxW="1200px" width="100%">
+            <Leftbar />
+            <MenuCenter />
+            <Rightbar />
+        </Flex>
+    );
+};
 
-export default Home
+export default Home;
