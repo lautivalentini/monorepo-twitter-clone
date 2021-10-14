@@ -12,10 +12,9 @@ const TweetBox = () => {
 
     async function onSendTweet() {
         try {
-            const { data } = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/user/share/tweet?username=${user.username}`,
-                { tweet },
-            );
+            const { data } = await axios.post(`api/user/share/tweet?username=${user.username}`, {
+                tweet,
+            });
 
             addUserdata(data.user);
             setTweet("");
