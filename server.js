@@ -1,37 +1,49 @@
-const express = require('express')
-const next = require('next')
-const dev = process.env.NODE_ENV !== 'production'
-const path = dev ? `.env.local` : ".env";
-require("dotenv").config({ path });
+const express = require("express");
+const next = require("next");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
-const cors = require('cors')
-const app = express()
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-const nextApp = next({ dev })
-const handler = nextApp.getRequestHandler()
+const envFile = dev ? `.env.local` : ".env";
 
-const mongoose = require('mongoose')
+dotenv.config({ path: envFile });
 
-const urlMongo = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
-console.log(urlMongo)
-mongoose.connect(urlMongo, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true
-})
-  .then((db) => console.log(`Connected to Mongo ${db.connection.port}`))
-  .catch((err) => console.error(err))
+let urlMongo = "";
 
-nextApp.prepare().then(() => {
-  app.use(cors())
-  app.use(express.json())
+if (process.env.DB_USER) {
+    urlMongo = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+} else {
+    urlMongo = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+}
 
-  app.use('/api/user', require('./routes/users'))
+mongoose
+    .connect(urlMongo, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+    })
+    .then((db) => console.log(`Connected to Mongo ${db.connection.port}`))
+    .catch((err) => console.error(err));
 
-  app.get('*', (req, res) => handler(req, res))
+app.prepare().then(() => {
+    const server = express();
 
-  app.listen(process.env.PORT, (err) => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${process.env.PORT}`)
-  })
-})
+    server.use(cors());
+    server.use(express.json());
+
+    server.use("/api/user", require("./routes/users"));
+
+    server.all("*", (req, res) => {
+        return handle(req, res);
+    });
+
+    server.listen(port, (err) => {
+        if (err) throw err;
+        console.log(`> Ready on http://localhost:${port}`);
+    });
+});
