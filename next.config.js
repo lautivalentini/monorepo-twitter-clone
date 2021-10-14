@@ -1,9 +1,10 @@
 module.exports = {
     future: {
-        webpack5: true
+        webpack5: true,
     },
-    webpack: function (config, options) {
+    webpack: function (config, _) {
         config.experiments = {};
+
         return config;
     },
 };
