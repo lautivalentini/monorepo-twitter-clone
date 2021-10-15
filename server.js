@@ -9,17 +9,19 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const pages = require("./pages");
+
 const envFile = dev ? `.env.local` : ".env";
 
 dotenv.config({ path: envFile });
 
-let urlMongo = "";
+let urlMongo = "mongodb://localhost:27017/twitter";
 
-if (process.env.DB_USER) {
-    urlMongo = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-} else {
-    urlMongo = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
-}
+// if (process.env.DB_USER) {
+//     urlMongo = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// } else {
+//     urlMongo = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+// }
 
 mongoose
     .connect(urlMongo, {
@@ -35,6 +37,16 @@ app.prepare().then(() => {
 
     server.use(cors());
     server.use(express.json());
+
+    pages.map((page) => {
+        server.get(page.path, (req, res) => {
+            return app.render(req, res, page.url, req.query);
+        });
+    });
+
+    server.use("/api/example", (req, res) => {
+        return res.json({ example: true });
+    });
 
     server.use("/api/user", require("./routes/users"));
 
