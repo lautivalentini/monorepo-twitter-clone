@@ -9,6 +9,8 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const pages = require("./pages");
+
 const envFile = dev ? `.env.local` : ".env";
 
 dotenv.config({ path: envFile });
@@ -35,6 +37,12 @@ app.prepare().then(() => {
 
     server.use(cors());
     server.use(express.json());
+
+    pages.map((page) => {
+        server.get(page.path, (req, res) => {
+            return app.render(req, res, page.url, req.query);
+        });
+    });
 
     server.use("/api/user", require("./routes/users"));
 
