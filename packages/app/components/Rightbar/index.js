@@ -9,11 +9,13 @@ const Rightbar = () => {
     const [usersToFollow, setUsersToFollow] = useState([]);
 
     async function getUsers() {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
         try {
             if (user.username !== "") {
                 const {
                     data: { users },
-                } = await axios.get(`api/user/get?username=${user.username}`);
+                } = await axios.get(`${API_URL}/api/user/get?username=${user.username}`);
 
                 if (users.length > 2) {
                     users.sort(() => Math.random() - 0.5).splice(0, 3);

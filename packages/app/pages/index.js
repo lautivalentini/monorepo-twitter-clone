@@ -58,7 +58,7 @@ const HomePage = () => {
                             >
                                 Regístrate
                             </Button>
-                            <Link href="/login">
+                            <Link passHref href="/login">
                                 <Button
                                     _hover={{ bg: "rgb(26, 145, 218)" }}
                                     borderColor="_blue"

@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
 
-const { validateFields } = require("../server/middlewares/validateFields");
-const { validatePhone } = require("../server/helpers/validators");
+const { validateFields } = require("../middlewares/validateFields");
+const { validatePhone } = require("../helpers/validators");
 const {
     createUser,
     loginUser,
@@ -10,7 +10,7 @@ const {
     validateJwt,
     shareTweet,
     getUsers,
-} = require("../server/controllers/userController");
+} = require("../controllers/userController");
 
 const router = Router();
 

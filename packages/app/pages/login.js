@@ -22,8 +22,10 @@ const Login = () => {
     const [fields, setFields] = useState({ phone: false, password: false });
 
     async function logginUser() {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
         try {
-            const logginUser = await axios.post(`api/user/auth/login`, {
+            const logginUser = await axios.post(`${API_URL}/api/user/auth/login`, {
                 phone,
                 password,
             });

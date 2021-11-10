@@ -104,13 +104,15 @@ const AuthState = (props) => {
     };
 
     async function validateUserToken() {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
         try {
             const config = {
                 headers: {
                     token: state.user.token || sessionStorage.getItem("token") || "",
                 },
             };
-            const validateUser = await axios.get("api/user/auth/validate", config);
+            const validateUser = await axios.get(`${API_URL}/api/user/auth/validate`, config);
 
             addUserdata({
                 ...validateUser.data.user,
